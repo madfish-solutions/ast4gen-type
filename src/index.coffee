@@ -14,6 +14,14 @@ class Type
       @nest_list  = ret.nest_list
       @field_hash = ret.field_hash
   
+  clone : ()->
+    ret = new Type
+    ret.main = @main
+    ret.nest_list  = @nest_list.slice()
+    for k,v of @field_hash
+      ret.field_hash[k] = v
+    ret
+  
   toString : ()->
     ret = @main
     if @nest_list.length

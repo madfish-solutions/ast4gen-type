@@ -72,6 +72,10 @@ describe 'index section', ()->
       assert.equal (new Type str = 'a{k1: b, k2: c}').toString(), str
       return
     
+    it 'nest field', ()->
+      assert.equal (new Type str = 'a<b>{k1: c}').toString(), str
+      return
+    
     it 'throw invalid type identifier', ()->
       assert.throws ()->
         new Type ','
@@ -96,4 +100,20 @@ describe 'index section', ()->
       assert.throws ()->
         new Type 'a{k1 b}'
       return
+  
+  describe 'clone', ()->
+    it 'is different', ()->
+      a = new Type 'a'
+      a1 = a.clone()
+      assert a != a1
+    
+    it 'same string', ()->
+      test = (str)->
+        a = new Type str
+        a1 = a.clone()
+        assert.equal a.toString(), a1.toString()
+      test 'a'
+      test 'a<b>'
+      test 'a<b>{k1: c}'
+      test 'a{k1: c}'
     

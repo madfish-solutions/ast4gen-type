@@ -50,7 +50,6 @@ describe 'index section', ()->
       assert.equal t.toString(), 'a{k1: b, k2: c}'
       return
   
-  
   describe 'parse', ()->
     it 'simple', ()->
       assert.equal (new Type str = 'a').toString(), str
@@ -117,3 +116,36 @@ describe 'index section', ()->
       test 'a<b>{k1: c}'
       test 'a{k1: c}'
     
+  describe 'cmp', ()->
+    type = (t)->new Type t
+    eq = (a,b)->assert type(a).cmp(type(b))
+    ne = (a,b)->assert !type(a).cmp(type(b))
+    it 'a == a', ()->
+      eq('a', 'a')
+    
+    it 'a != b', ()->
+      ne('a', 'b')
+    
+    it 'a<b> == a<b>', ()->
+      eq('a<b>', 'a<b>')
+    
+    it 'a<b> != a<>', ()->
+      ne('a<b>', 'a<>')
+    
+    it 'a<b> != a<c>', ()->
+      ne('a<b>', 'a<c>')
+    
+    it 'a{b:c} == a{b:c}', ()->
+      eq('a{b:c}', 'a{b:c}')
+    
+    it 'a{b:c} != a{b:d}', ()->
+      ne('a{b:c}', 'a{b:d}')
+    
+    it 'a{b:c} != a{d:c}', ()->
+      ne('a{b:c}', 'a{d:c}')
+    
+    it 'a{b:c} == a{}', ()->
+      ne('a{b:c}', 'a{}')
+    
+    it 'a{} == a{b:c}', ()->
+      ne('a{}', 'a{b:c}')

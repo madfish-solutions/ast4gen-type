@@ -22,6 +22,19 @@ class Type
       ret.field_hash[k] = v
     ret
   
+  cmp : (t)->
+    return false if @main != t.main
+    return false if @nest_list.length != t.nest_list.length
+    for v,k in @nest_list
+      return false if !t.nest_list[k].cmp v
+    for k,v of @field_hash
+      return false if !tv = t.field_hash[k]
+      return false if !tv.cmp v
+    for k,v of t.field_hash
+      return false if !tv = @field_hash[k]
+      # return false if !tv.cmp v
+    true
+  
   toString : ()->
     ret = @main
     if @nest_list.length

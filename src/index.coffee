@@ -17,9 +17,10 @@ class Type
   clone : ()->
     ret = new Type
     ret.main = @main
-    ret.nest_list  = @nest_list.slice()
+    for v in @nest_list
+      ret.nest_list.push v.clone()
     for k,v of @field_hash
-      ret.field_hash[k] = v
+      ret.field_hash[k] = v.clone()
     ret
   
   cmp : (t)->

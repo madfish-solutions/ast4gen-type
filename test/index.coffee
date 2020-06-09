@@ -35,7 +35,7 @@ describe 'index section', ()->
     it 'field', ()->
       t = new Type
       t.main = 'a'
-      t.field_hash.k1 = t2 = new Type
+      t.field_map.k1 = t2 = new Type
       t2.main = 'b'
       assert.equal t.toString(), 'a{k1: b}'
       return
@@ -43,9 +43,9 @@ describe 'index section', ()->
     it 'field2', ()->
       t = new Type
       t.main = 'a'
-      t.field_hash.k1 = t2 = new Type
+      t.field_map.k1 = t2 = new Type
       t2.main = 'b'
-      t.field_hash.k2 = t2 = new Type
+      t.field_map.k2 = t2 = new Type
       t2.main = 'c'
       assert.equal t.toString(), 'a{k1: b, k2: c}'
       return

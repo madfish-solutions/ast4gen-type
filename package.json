@@ -11,14 +11,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/konchunas/ast4gen-type.git"
+    "url": "git+https://github.com/madfish-solutions/ast4gen-type.git"
   },
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/konchunas/ast4gen-type/issues"
+    "url": "https://github.com/madfish-solutions/ast4gen-type/issues"
   },
-  "homepage": "https://github.com/konchunas/ast4gen-type#readme",
+  "homepage": "https://github.com/madfish-solutions/ast4gen-type#readme",
   "devDependencies": {
     "coveralls": "^2.11.16",
     "iced-coffee-coverage": "^1.0.21",
